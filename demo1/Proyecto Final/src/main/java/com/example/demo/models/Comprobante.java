@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,9 @@ public class Comprobante {
     @Setter
     private Cliente cliente;
 
+
     @OneToMany(mappedBy = "comprobante", cascade = CascadeType.ALL)
+    @Getter
     @Setter
     private List<Producto> productos;
 
@@ -34,5 +37,8 @@ public class Comprobante {
     @Setter
     @Getter
     private int fecha;
+    public Long getClienteId() {
+        return cliente != null ? cliente.getId() : null;
+    }
 
 }
